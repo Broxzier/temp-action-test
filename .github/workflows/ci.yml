@@ -21,5 +21,9 @@ jobs:
 
       - name: Amend the last commit
         run: |
+          git config --global user.email "gitbot@openrct2.org"
+          git config --global user.name "OpenRCT2 git bot"
           git add time.txt
           git commit --amend --no-edit
+          git push
+          echo "Complete"
