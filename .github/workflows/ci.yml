@@ -1,5 +1,11 @@
 name: Update file on PR merge
-on: pull_request
+on:
+  pull_request:
+    branches:
+      - master
+      - develop
+    types: closed
+
 jobs:
   update_date:
     if: github.event.pull_request.merged == true
