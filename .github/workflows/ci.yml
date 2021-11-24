@@ -25,5 +25,5 @@ jobs:
           git config --global user.name "OpenRCT2 git bot"
           git add time.txt
           git commit --amend --no-edit
-          git push
+          git push --force-with-lease
           echo "Complete"
