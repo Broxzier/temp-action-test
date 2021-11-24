@@ -11,11 +11,13 @@ jobs:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
-      # Checkout the branch
+      # Checkout the branch with full history
       - name: checkout
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
-      - name: Update file
+      - name: Update time.txt
         run: |
           date > time.txt
 
