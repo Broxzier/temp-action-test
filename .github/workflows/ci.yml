@@ -1,0 +1,19 @@
+name: Update file on PR merge
+on: pull_request
+jobs:
+  update_date:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the branch
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: Update file
+        run: |
+          date > time.txt
+
+      - name: Amend the last commit
+        run: |
+          git add time.txt
+          git commit --amend --no-edit
