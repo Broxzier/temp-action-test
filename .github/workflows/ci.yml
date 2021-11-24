@@ -24,6 +24,6 @@ jobs:
           git config --global user.email "gitbot@openrct2.org"
           git config --global user.name "OpenRCT2 git bot"
           git add time.txt
-          git commit --amend --no-edit
-          #git push --force-with-lease
+          git commit -am "Update time.txt" #--amend --no-edit
+          git push --force-with-lease
           echo "Complete"
