@@ -2,7 +2,7 @@
  * Some dummy source code
  */
 
-const uint32_t ParkFileVersion = 1;
+const uint32_t ParkFileVersion = 2;
 
 void CrashWhenVersionIs50()
 {
