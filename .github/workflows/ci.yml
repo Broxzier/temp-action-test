@@ -11,21 +11,22 @@ jobs:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
-      # Checkout the branch with full history
       - name: checkout
         uses: actions/checkout@v2
         with:
+          # Fetch full depth, otherwise the commit step gets rid of the relation with its parent(s).
+          # A shallow clone may not go back far enough to include all the commit's parents.
+          # Setting fetch-depth to 0 causes the full history to be fetched.
           fetch-depth: 0
 
-      - name: Update time.txt
+      - name: Update ParkFileVersion
         run: |
-          date > time.txt
+          sed -ri 's/(.*ParkFileVersion = )([0-9]+)(.*)/echo "\1$((\2+1))\3"/ge' ParkFile.cpp
 
       - name: Amend the last commit
         run: |
           git config --global user.email "gitbot@openrct2.org"
           git config --global user.name "OpenRCT2 git bot"
-          git add time.txt
-          git commit --amend --no-edit
+          git commit -a --amend --no-edit
           git push --force-with-lease
           echo "Complete"
